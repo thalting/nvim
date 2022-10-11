@@ -1,0 +1,6 @@
+require("lsp")
+require("opts")
+require("plugins")
+require("keybinds")
+require("statusline")
+require("colorscheme")

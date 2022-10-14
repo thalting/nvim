@@ -66,6 +66,7 @@ require("nvim-treesitter.configs").setup({
         "elixir",
         "sxhkdrc",
         "haskell",
+        "clojure",
         "markdown",
         "gitignore",
         "javascript",

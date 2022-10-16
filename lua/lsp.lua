@@ -1,7 +1,3 @@
--- Add additional capabilities supported by nvim-cmp
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
-
 local lspconfig = require("lspconfig")
 
 -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
@@ -45,9 +41,6 @@ require("mason-lspconfig").setup({
         -- formatters
         "stylua",
         "yapf",
-
-        -- others
-        "mypy",
     },
 })
 
@@ -55,6 +48,8 @@ require("null-ls").setup({
     sources = {
         -- formatters
         require("null-ls").builtins.formatting.yapf,
+        require("null-ls").builtins.formatting.joker,
+        require("null-ls").builtins.formatting.zprint,
         require("null-ls").builtins.formatting.stylua,
 
         -- code actions
@@ -63,13 +58,15 @@ require("null-ls").setup({
 
         -- diagnostics
         require("null-ls").builtins.diagnostics.zsh,
-        require("null-ls").builtins.diagnostics.mypy,
+        require("null-ls").builtins.diagnostics.clj_kondo,
         require("null-ls").builtins.diagnostics.shellcheck,
 
         -- hover
         require("null-ls").builtins.hover.dictionary,
     },
 })
+
+local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 for _, lsp in ipairs(servers) do
     if lsp == "sumneko_lua" then
@@ -102,10 +99,6 @@ local has_words_before = function()
 end
 
 local snippy = require("snippy")
-
-local t = function(str)
-    return vim.api.nvim_replace_termcodes(str, true, true, true)
-end
 
 -- nvim-cmp setup
 local cmp = require("cmp")

@@ -40,6 +40,7 @@ local pkgs = {
 
     -- life quality
     "nvim-telescope/telescope.nvim",
+    "mcauley-penney/tidy.nvim",
     "akinsho/toggleterm.nvim",
     "kylechui/nvim-surround",
     "numToStr/Comment.nvim",

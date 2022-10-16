@@ -3,6 +3,7 @@ require("impatient")
 local pkgs = require("pkgs")
 require("paq")({unpack(pkgs)})
 
+require("tidy").setup()
 require("orgmode").setup()
 require("orgmode").setup_ts_grammar()
 require("org-bullets").setup()
@@ -78,6 +79,5 @@ require("nvim-treesitter.configs").setup({
     },
     indent = {
         enable = true,
-        disable = { "python" },
     },
 })

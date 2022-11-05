@@ -9,8 +9,8 @@ local servers = {
     "ocamllsp",
     "tsserver",
     "pyright",
+    "clangd",
     "gopls",
-    "ccls",
     "hls",
     "zls",
 }
@@ -37,10 +37,6 @@ require("mason-lspconfig").setup({
         "pyright",
         "gopls",
         "zls",
-
-        -- formatters
-        "stylua",
-        "yapf",
     },
 })
 
@@ -48,7 +44,6 @@ require("null-ls").setup({
     sources = {
         -- formatters
         require("null-ls").builtins.formatting.yapf,
-        require("null-ls").builtins.formatting.joker,
         require("null-ls").builtins.formatting.zprint,
         require("null-ls").builtins.formatting.stylua,
 
@@ -58,8 +53,10 @@ require("null-ls").setup({
 
         -- diagnostics
         require("null-ls").builtins.diagnostics.zsh,
+        require("null-ls").builtins.diagnostics.tsc,
         require("null-ls").builtins.diagnostics.clj_kondo,
         require("null-ls").builtins.diagnostics.shellcheck,
+        require("null-ls").builtins.diagnostics.clang_check,
 
         -- hover
         require("null-ls").builtins.hover.dictionary,

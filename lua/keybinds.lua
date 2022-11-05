@@ -53,13 +53,6 @@ local mappings = {
     { "n", "<leader>tb", ":lua require('telescope.builtin').buffers()<cr>" },
     { "n", "<leader>th", ":lua require('telescope.builtin').help_tags()<cr>" },
 
-    -- hop
-    { "n", "<leader>w", ":HopWord<cr>" },
-    { "n", "f", ":lua require('hop').hint_char1({ direction = require('hop.hint').HintDirection.AFTER_CURSOR, current_line_only = true })<cr>" },
-    { "n", "F", ":lua require('hop').hint_char1({ direction = require('hop.hint').HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>" },
-    { "n", "t", ":lua require('hop').hint_char1({ direction = require('hop.hint').HintDirection.AFTER_CURSOR, current_line_only = true, hint_offset = -1 })<cr>" },
-    { "n", "T", ":lua require('hop').hint_char1({ direction = require('hop.hint').HintDirection.BEFORE_CURSOR, current_line_only = true, hint_offset = 1 })<cr>" },
-
     -- toggleterm
     { "t", "<C-z>", "<C-\\><C-N>" },
     { "n", "<C-t>", ":ToggleTerm size=20 direction=horizontal<cr>" },
@@ -74,7 +67,6 @@ local mappings = {
     -- lsp
     { "n", "gD", ":lua vim.lsp.buf.declaration()<cr>" },
     { "n", "gd", ":lua vim.lsp.buf.definition()<cr>" },
-    { "n", "<leader>h", ":lua vim.lsp.buf.hover()<cr>" },
     { "n", "gi", ":lua vim.lsp.buf.implementation()<cr>" },
     { "n", "<C-k>", ":lua vim.lsp.buf.signature_help()<cr>" },
     { "n", "<space>wa", ":lua vim.lsp.buf.add_workspace_folder()<cr>" },
@@ -97,6 +89,9 @@ local mappings = {
 
     -- hover
     { "n", "<space>h", ":lua require('hover').hover()<cr>" },
+
+    -- iswap
+    { "n", "<space>is", ":ISwap<cr>" },
 
     -- buffers
     { "n", "<leader>bd", ":bdelete<cr>"},

@@ -1,7 +1,7 @@
 require("impatient")
 
 local pkgs = require("pkgs")
-require("paq")({unpack(pkgs)})
+require("paq")({ unpack(pkgs) })
 
 require("tidy").setup()
 require("orgmode").setup()
@@ -10,9 +10,23 @@ require("org-bullets").setup()
 require("neogit").setup()
 require("toggleterm").setup()
 require("Comment").setup()
-require("nvim-surround").setup()
 require("fidget").setup()
 require("which-key").setup()
+
+require("shade").setup({
+    overlay_opacity = 50,
+    opacity_step = 1,
+    keys = {
+        brightness_up = "<C-Up>",
+        brightness_down = "<C-Down>",
+    },
+})
+
+require("nvim-surround").setup({
+    keymaps = {
+        visual = "s",
+    },
+})
 
 require("gitsigns").setup({
     current_line_blame_opts = {
@@ -26,10 +40,6 @@ require("colorizer").setup({
     },
 })
 
-require("hop").setup({
-    keys = "asdfghjkl",
-})
-
 require("hover").setup({
     init = function()
         require("hover.providers.lsp")
@@ -37,7 +47,6 @@ require("hover").setup({
     preview_opts = {
         border = nil,
     },
-    preview_window = false,
     title = false,
 })
 
@@ -58,8 +67,10 @@ require("nvim-treesitter.configs").setup({
         "nix",
         "rust",
         "llvm",
+        "glsl",
         "bash",
         "make",
+        "vala",
         "ocaml",
         "meson",
         "python",
@@ -79,5 +90,6 @@ require("nvim-treesitter.configs").setup({
     },
     indent = {
         enable = true,
+        disable = { "python" },
     },
 })

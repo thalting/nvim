@@ -47,5 +47,6 @@ require("lualine").setup({
                 always_visible = false,
             },
         },
+        lualine_c = { "branch", "filename" },
     },
 })

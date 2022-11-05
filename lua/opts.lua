@@ -47,3 +47,4 @@ vim.g.knap_settings = gknapsettings
 -- conjure
 vim.g["conjure#filetype#scheme"] = "conjure.client.guile.socket"
 vim.g["conjure#client#guile#socket#pipename"] = ".guile-repl.socket"
+vim.cmd("autocmd BufNewFile conjure-log-* lua vim.diagnostic.disable(0)")

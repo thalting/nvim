@@ -13,15 +13,6 @@ require("Comment").setup()
 require("fidget").setup()
 require("which-key").setup()
 
-require("shade").setup({
-    overlay_opacity = 50,
-    opacity_step = 1,
-    keys = {
-        brightness_up = "<C-Up>",
-        brightness_down = "<C-Down>",
-    },
-})
-
 require("nvim-surround").setup({
     keymaps = {
         visual = "s",

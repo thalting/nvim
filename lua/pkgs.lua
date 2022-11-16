@@ -46,7 +46,6 @@ local pkgs = {
     "numToStr/Comment.nvim",
     "windwp/nvim-autopairs",
     "folke/which-key.nvim",
-    "sunjon/Shade.nvim",
     "mizlan/iswap.nvim",
     "lmburns/lf.nvim",
     "Olical/conjure",

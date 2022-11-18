@@ -45,7 +45,6 @@ local pkgs = {
     "kylechui/nvim-surround",
     "numToStr/Comment.nvim",
     "windwp/nvim-autopairs",
-    "folke/which-key.nvim",
     "mizlan/iswap.nvim",
     "lmburns/lf.nvim",
     "Olical/conjure",

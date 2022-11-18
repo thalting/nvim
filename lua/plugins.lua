@@ -11,7 +11,6 @@ require("neogit").setup()
 require("toggleterm").setup()
 require("Comment").setup()
 require("fidget").setup()
-require("which-key").setup()
 
 require("nvim-surround").setup({
     keymaps = {

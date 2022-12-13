@@ -4,13 +4,20 @@ local pkgs = require("pkgs")
 require("paq")({ unpack(pkgs) })
 
 require("tidy").setup()
-require("orgmode").setup()
-require("orgmode").setup_ts_grammar()
-require("org-bullets").setup()
 require("neogit").setup()
 require("toggleterm").setup()
 require("Comment").setup()
-require("fidget").setup()
+require("which-key").setup()
+
+require("tmux").setup({
+    copy_sync = {},
+    navigation = {
+        enable_default_keybindings = false,
+    },
+    resize = {
+        enable_default_keybindings = false,
+    },
+})
 
 require("nvim-surround").setup({
     keymaps = {
@@ -30,20 +37,17 @@ require("colorizer").setup({
     },
 })
 
-require("hover").setup({
-    init = function()
-        require("hover.providers.lsp")
-    end,
-    preview_opts = {
-        border = nil,
-    },
-    title = false,
-})
-
 require("nvim-autopairs").setup({
     disale_in_macro = true,
     enable_check_bracket_line = false,
 })
+
+require("nvim-autopairs").get_rule("'")[1].not_filetypes = {
+    "clojure",
+    "scheme",
+    "fennel",
+    "lisp",
+}
 
 require("nvim-treesitter.configs").setup({
     ensure_installed = {
@@ -53,7 +57,6 @@ require("nvim-treesitter.configs").setup({
         "cpp",
         "zig",
         "lua",
-        "org",
         "nix",
         "rust",
         "llvm",
@@ -71,15 +74,14 @@ require("nvim-treesitter.configs").setup({
         "clojure",
         "markdown",
         "gitignore",
+        "commonlisp",
         "javascript",
         "typescript",
     },
     highlight = {
         enable = true,
-        additional_vim_regex_highlighting = { "org" },
     },
     indent = {
         enable = true,
-        disable = { "python" },
     },
 })

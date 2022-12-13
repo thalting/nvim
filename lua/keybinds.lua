@@ -5,47 +5,18 @@ local mappings = {
     -- my maps
     { "n", "ZW", ":w<cr>" },
     { "n", "<leader>s", ":%s/" },
+    { "n", "<leader><Space>", ":nohlsearch<cr>" },
 
-    -- windows
-    { "n", "<M-h>", ":wincmd h<cr>" },
-    { "n", "<M-j>", ":wincmd j<cr>" },
-    { "n", "<M-k>", ":wincmd k<cr>" },
-    { "n", "<M-l>", ":wincmd l<cr>" },
-    { "n", "<M-q>", ":wincmd c<cr>" },
-    { "n", "<M-n>", ":wincmd n<cr>" },
-    { "n", "<M-,>", ":wincmd <<cr>" },
-    { "n", "<M-.>", ":wincmd ><cr>" },
-    { "n", "<M-=>", ":wincmd +<cr>" },
-    { "n", "<M-->", ":wincmd -<cr>" },
-    { "n", "<M-H>", ":wincmd H<cr>" },
-    { "n", "<M-J>", ":wincmd J<cr>" },
-    { "n", "<M-K>", ":wincmd K<cr>" },
-    { "n", "<M-L>", ":wincmd L<cr>" },
-    { "n", "<M-r>", ":wincmd r<cr>" },
-    { "n", "<M-R>", ":wincmd R<cr>" },
-    { "n", "<M-T>", ":wincmd T<cr>" },
-    { "n", "<M-v>", ":vnew<cr>" },
+    -- tmux
+    { "n", "<M-h>", ":lua require('tmux').move_left()<cr>" },
+    { "n", "<M-j>", ":lua require('tmux').move_bottom()<cr>" },
+    { "n", "<M-k>", ":lua require('tmux').move_top()<cr>" },
+    { "n", "<M-l>", ":lua require('tmux').move_right()<cr>" },
 
-    -- knap
-    -- F5 processes the document once, and refreshes the view
-    { "i", "<F5>", ":lua require('knap').process_once()<cr>" },
-    { "v", "<F5>", ":lua require('knap').process_once()<cr>" },
-    { "n", "<F5>", ":lua require('knap').process_once()<cr>" },
-
-    -- closes the viewer application,'and 'llows settings to be reset
-    { "i", "<F6>", ":lua require('knap').close_viewer()<cr>" },
-    { "v", "<F6>", ":lua require('knap').close_viewer()<cr>" },
-    { "n", "<F6>", ":lua require('knap').close_viewer()<cr>" },
-
-    -- toggles the auto-processing on'and 'ff
-    { "i", "<F7>", ":lua require('knap').toggle_autopreviewing()<cr>" },
-    { "v", "<F7>", ":lua require('knap').toggle_autopreviewing()<cr>" },
-    { "n", "<F7>", ":lua require('knap').toggle_autopreviewing()<cr>" },
-
-    -- invokes a SyncTeX forward sear'h, o' similar, where appropriate
-    { "i", "<F8>", ":lua require('knap').forward_jump()<cr>" },
-    { "v", "<F8>", ":lua require('knap').forward_jump()<cr>" },
-    { "n", "<F8>", ":lua require('knap').forward_jump()<cr>" },
+    { "n", "<M-H>", ":lua require('tmux').resize_left()<cr>" },
+    { "n", "<M-J>", ":lua require('tmux').resize_bottom()<cr>" },
+    { "n", "<M-K>", ":lua require('tmux').resize_top()<cr>" },
+    { "n", "<M-L>", ":lua require('tmux').resize_right()<cr>" },
 
     -- telescope
     { "n", "<leader>tf", ":lua require('telescope.builtin').find_files()<cr>" },
@@ -62,13 +33,13 @@ local mappings = {
     { "t", "<S-t>", "<C-\\><C-N> :ToggleTerm direction=float<cr>" }, -- fix toggle in zsh vi mode
 
     -- lf
-    { "n", "<C-l>", ":lua require('lf').start()<cr>", },
+    { "n", "<C-n>", ":Lf<cr>", },
 
     -- lsp
     { "n", "gD", ":lua vim.lsp.buf.declaration()<cr>" },
     { "n", "gd", ":lua vim.lsp.buf.definition()<cr>" },
     { "n", "gi", ":lua vim.lsp.buf.implementation()<cr>" },
-    { "n", "<C-k>", ":lua vim.lsp.buf.signature_help()<cr>" },
+    { "n", "<space>h", ":lua vim.lsp.buf.hover()<cr>" },
     { "n", "<space>wa", ":lua vim.lsp.buf.add_workspace_folder()<cr>" },
     { "n", "<space>wr", ":lua vim.lsp.buf.remove_workspace_folder()<cr>" },
     { "n", "<space>wl", ":lua function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end<cr>" },
@@ -86,12 +57,6 @@ local mappings = {
     { 'n', '<space>gsd', ':Gitsigns detach<cr>' },
     { 'n', '<space>gsb', ':Gitsigns blame_line<cr>' },
     { 'n', '<space>gst', ':Gitsigns toggle_current_line_blame<cr>' },
-
-    -- hover
-    { "n", "<space>h", ":lua require('hover').hover()<cr>" },
-
-    -- iswap
-    { "n", "<space>is", ":ISwap<cr>" },
 
     -- buffers
     { "n", "<leader>bd", ":bdelete<cr>"},

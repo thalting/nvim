@@ -1,4 +1,5 @@
 require("lsp")
+require("cmpc")
 require("opts")
 require("plugins")
 require("keybinds")

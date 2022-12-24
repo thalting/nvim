@@ -25,21 +25,6 @@ require("mason").setup({
     },
 })
 
-require("mason-lspconfig").setup({
-    ensure_installed = {
-        -- lsps
-        "rust_analyzer",
-        "sumneko_lua",
-        "clojure_lsp",
-        "elixirls",
-        "ocamllsp",
-        "tsserver",
-        "pyright",
-        "gopls",
-        "zls",
-    },
-})
-
 require("null-ls").setup({
     sources = {
         -- formatters
@@ -65,6 +50,22 @@ require("null-ls").setup({
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
+local border = {
+    { "╔", "FloatBorder" },
+    { "═", "FloatBorder" },
+    { "╗", "FloatBorder" },
+    { "║", "FloatBorder" },
+    { "╝", "FloatBorder" },
+    { "═", "FloatBorder" },
+    { "╚", "FloatBorder" },
+    { "║", "FloatBorder" },
+}
+
+-- LSP settings (for overriding per client)
+local handlers = {
+    ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = border }),
+}
+
 for _, lsp in ipairs(servers) do
     if lsp == "sumneko_lua" then
         lspconfig.sumneko_lua.setup({
@@ -82,10 +83,12 @@ for _, lsp in ipairs(servers) do
                 },
             },
             capabilities = capabilities,
+            handlers = handlers,
         })
     else
         lspconfig[lsp].setup({
             capabilities = capabilities,
+            handlers = handlers,
         })
     end
 end

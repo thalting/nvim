@@ -33,8 +33,29 @@ local kind_icons = {
     TypeParameter = "",
 }
 
+local function border(hl_name)
+    return {
+        { "╔", hl_name },
+        { "═", hl_name },
+        { "╗", hl_name },
+        { "║", hl_name },
+        { "╝", hl_name },
+        { "═", hl_name },
+        { "╚", hl_name },
+        { "║", hl_name },
+    }
+end
+
 local cmp = require("cmp")
 cmp.setup({
+    window = {
+        completion = {
+            border = border("CmpBorder"),
+        },
+        documentation = {
+            border = border("CmpDocBorder"),
+        },
+    },
     formatting = {
         format = function(entry, vim_item)
             -- Kind icons
@@ -94,7 +115,6 @@ cmp.setup({
     }),
     sources = {
         { name = "nvim_lsp" },
-        { name = "conjure" },
         { name = "snippy" },
         { name = "buffer" },
         { name = "path" },

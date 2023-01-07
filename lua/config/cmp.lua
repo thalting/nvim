@@ -117,6 +117,7 @@ cmp.setup({
         { name = "nvim_lsp" },
         { name = "snippy" },
         { name = "buffer" },
+        { name = "neorg" },
         { name = "path" },
     },
 })

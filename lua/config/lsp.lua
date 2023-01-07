@@ -7,46 +7,13 @@ local servers = {
     "clojure_lsp",
     "elixirls",
     "ocamllsp",
-    "tsserver",
     "pyright",
     "clangd",
+    "denols",
     "gopls",
     "hls",
     "zls",
 }
-
-require("mason").setup({
-    ui = {
-        icons = {
-            package_installed = "✓",
-            package_pending = "➜",
-            package_uninstalled = "✗",
-        },
-    },
-})
-
-require("null-ls").setup({
-    sources = {
-        -- formatters
-        require("null-ls").builtins.formatting.yapf,
-        require("null-ls").builtins.formatting.zprint,
-        require("null-ls").builtins.formatting.stylua,
-
-        -- code actions
-        require("null-ls").builtins.code_actions.gitsigns,
-        require("null-ls").builtins.code_actions.shellcheck,
-
-        -- diagnostics
-        require("null-ls").builtins.diagnostics.zsh,
-        require("null-ls").builtins.diagnostics.tsc,
-        require("null-ls").builtins.diagnostics.clj_kondo,
-        require("null-ls").builtins.diagnostics.shellcheck,
-        require("null-ls").builtins.diagnostics.clang_check,
-
-        -- hover
-        require("null-ls").builtins.hover.dictionary,
-    },
-})
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 

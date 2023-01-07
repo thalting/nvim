@@ -5,24 +5,14 @@ local mappings = {
     -- my maps
     { "n", "ZW", ":w<cr>" },
     { "n", "<leader>s", ":%s/" },
-    { "n", "<leader><Space>", ":nohlsearch<cr>" },
-
-    -- tmux
-    { "n", "<M-h>", ":lua require('tmux').move_left()<cr>" },
-    { "n", "<M-j>", ":lua require('tmux').move_bottom()<cr>" },
-    { "n", "<M-k>", ":lua require('tmux').move_top()<cr>" },
-    { "n", "<M-l>", ":lua require('tmux').move_right()<cr>" },
-
-    { "n", "<M-H>", ":lua require('tmux').resize_left()<cr>" },
-    { "n", "<M-J>", ":lua require('tmux').resize_bottom()<cr>" },
-    { "n", "<M-K>", ":lua require('tmux').resize_top()<cr>" },
-    { "n", "<M-L>", ":lua require('tmux').resize_right()<cr>" },
+    { "n", "<leader><space>", ":nohlsearch<cr>" },
 
     -- telescope
-    { "n", "<leader>tf", ":lua require('telescope.builtin').find_files()<cr>" },
-    { "n", "<leader>tg", ":lua require('telescope.builtin').live_grep()<cr>" },
-    { "n", "<leader>tb", ":lua require('telescope.builtin').buffers()<cr>" },
-    { "n", "<leader>th", ":lua require('telescope.builtin').help_tags()<cr>" },
+    { "n", "<leader>tt", ":Telescope<cr>" },
+    { "n", "<leader>tf", ":Telescope find_files<cr>" },
+    { "n", "<leader>tg", ":Telescope live_grep<cr>" },
+    { "n", "<leader>tb", ":Telescope buffers<cr>" },
+    { "n", "<leader>th", ":Telescope help_tags<cr>" },
 
     -- toggleterm
     { "t", "<C-z>", "<C-\\><C-N>" },
@@ -32,8 +22,8 @@ local mappings = {
     { "n", "<S-t>", ":ToggleTerm direction=float<cr>" },
     { "t", "<S-t>", "<C-\\><C-N> :ToggleTerm direction=float<cr>" }, -- fix toggle in zsh vi mode
 
-    -- lf
-    { "n", "<C-n>", ":Lf<cr>", },
+    -- nabla
+    { "n", "<leader>p", ":lua require('nabla').popup()<cr>", },
 
     -- lsp
     { "n", "gD", ":lua vim.lsp.buf.declaration()<cr>" },

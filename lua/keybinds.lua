@@ -8,11 +8,11 @@ local mappings = {
     { "n", "<leader><space>", ":nohlsearch<cr>" },
 
     -- telescope
-    { "n", "<leader>tt", ":Telescope<cr>" },
-    { "n", "<leader>tf", ":Telescope find_files<cr>" },
-    { "n", "<leader>tg", ":Telescope live_grep<cr>" },
-    { "n", "<leader>tb", ":Telescope buffers<cr>" },
-    { "n", "<leader>th", ":Telescope help_tags<cr>" },
+    { "n", "<leader>tt", ":Telescope<cr>", { desc = "Telescope" } },
+    { "n", "<leader>tf", ":Telescope find_files<cr>", { desc = "Find files" } },
+    { "n", "<leader>tg", ":Telescope live_grep<cr>", { desc = "Live grep" } },
+    { "n", "<leader>tb", ":Telescope buffers<cr>", { desc = "Buffers" } },
+    { "n", "<leader>th", ":Telescope help_tags<cr>", { desc = "Help tags" } },
 
     -- toggleterm
     { "t", "<C-z>", "<C-\\><C-N>" },
@@ -23,43 +23,62 @@ local mappings = {
     { "t", "<S-t>", "<C-\\><C-N> :ToggleTerm direction=float<cr>" }, -- fix toggle in zsh vi mode
 
     -- nabla
-    { "n", "<leader>p", ":lua require('nabla').popup()<cr>", },
+    { "n", "<leader>p", function() require("nabla").popup() end },
 
     -- lsp
-    { "n", "gD", ":lua vim.lsp.buf.declaration()<cr>" },
-    { "n", "gd", ":lua vim.lsp.buf.definition()<cr>" },
-    { "n", "gi", ":lua vim.lsp.buf.implementation()<cr>" },
-    { "n", "<space>h", ":lua vim.lsp.buf.hover()<cr>" },
-    { "n", "<space>wa", ":lua vim.lsp.buf.add_workspace_folder()<cr>" },
-    { "n", "<space>wr", ":lua vim.lsp.buf.remove_workspace_folder()<cr>" },
-    { "n", "<space>wl", ":lua function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end<cr>" },
-    { "n", "<space>D", ":lua vim.lsp.buf.type_definition()<cr>" },
-    { "n", "<space>rn", ":lua vim.lsp.buf.rename()<cr>" },
-    { "n", "<space>ca", ":lua vim.lsp.buf.code_action()<cr>" },
-    { "n", "gr", ":lua vim.lsp.buf.references()<cr>" },
-    { "n", "<space>f", ":lua vim.lsp.buf.format()<cr>" },
+    { "n", "gD", function() vim.lsp.buf.declaration() end, { desc = "Jumps to the declaration" }, },
+    { "n", "gd", function() vim.lsp.buf.definition() end, { desc = "Jumps to the definition" }, },
+    { "n", "gi", function() vim.lsp.buf.implementation() end, { desc = "Lists all the implementations" }, },
+    { "n", "<space>h", function() vim.lsp.buf.hover() end, { desc = "Displays hover information" }, },
+    { "n", "<space>D", function() vim.lsp.buf.type_definition() end, { desc = "Jumps to the definition of the type" }, },
+    { "n", "<space>rn", function() vim.lsp.buf.rename() end, { desc = "Renames all references" }, },
+    { "n", "gr", function() vim.lsp.buf.references() end, { desc = "Lists all the references" }, },
+    { "n", "<space>f", function() vim.lsp.buf.format() end, { desc = "Formats a buffer" }, },
+
+    -- inc rename
+    { "n", "<leader>rn", ":IncRename ", { desc = "Incremental rename" } },
 
     -- neogit
-    { "n", "<space>g", ":Neogit<cr>" },
+    { "n", "<space>g", ":Neogit<cr>", { desc = "Open Neogit" } },
 
     -- gitsigns
-    { 'n', '<space>gsa', ':Gitsigns attach<cr>' },
-    { 'n', '<space>gsd', ':Gitsigns detach<cr>' },
-    { 'n', '<space>gsb', ':Gitsigns blame_line<cr>' },
-    { 'n', '<space>gst', ':Gitsigns toggle_current_line_blame<cr>' },
+    { "n", "<leader>gsa", ":Gitsigns attach<cr>", { desc = "Attach" } },
+    { "n", "<leader>gsd", ":Gitsigns detach<cr>", { desc = "Detach" } },
+    { "n", "<leader>gsb", ":Gitsigns blame_line<cr>", { desc = "Blame line" } },
+    { "n", "<leader>gst", ":Gitsigns toggle_current_line_blame<cr>", { desc = "Toggle current line blame" } },
+
+    -- bufferline
+    { "n", "<A-1>", ":BufferLineGoToBuffer 1<cr>" },
+    { "n", "<A-2>", ":BufferLineGoToBuffer 2<cr>" },
+    { "n", "<A-3>", ":BufferLineGoToBuffer 3<cr>" },
+    { "n", "<A-4>", ":BufferLineGoToBuffer 4<cr>" },
+    { "n", "<A-5>", ":BufferLineGoToBuffer 5<cr>" },
+    { "n", "<A-6>", ":BufferLineGoToBuffer 6<cr>" },
+    { "n", "<A-7>", ":BufferLineGoToBuffer 7<cr>" },
+    { "n", "<A-8>", ":BufferLineGoToBuffer 8<cr>" },
+    { "n", "<A-9>", ":BufferLineGoToBuffer 9<cr>" },
+    { "n", "<A-c>", ":BufferLinePickClose<cr>" },
 
     -- buffers
-    { "n", "<leader>bd", ":bdelete<cr>"},
-    { "n", "<leader>bn", ":bnext<cr>"},
-    { "n", "<leader>bp", ":bprevious<cr>"},
+    { "n", "<leader>bd", ":bdelete<cr>", { desc = "Delete buffer" } },
+    { "n", "<leader>bn", ":bnext<cr>", { desc = "Next buffer" } },
+    { "n", "<leader>bp", ":bprevious<cr>", { desc = "Previous buffer" } },
 }
+
+-- Which key registers
+local wk = require("which-key")
+wk.register({
+    g = { name = "Gitsigns" },
+    b = { name = "Buffers" },
+    t = { name = "Telescope" },
+}, { prefix = "<leader>" })
 
 local function map(mode, lhs, rhs, opts)
     local options = { noremap = true }
     if opts then
         options = vim.tbl_extend("force", options, opts)
     end
-    vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+    vim.keymap.set(mode, lhs, rhs, options)
 end
 
 for _, maps in pairs(mappings) do

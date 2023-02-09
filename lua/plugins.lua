@@ -13,6 +13,9 @@ vim.opt.rtp:prepend(lazypath)
 
 local pkgs = require("pkgs")
 require("lazy").setup(pkgs, {
+    install = {
+        missing = false,
+    },
     ui = {
         icons = {
             loaded = "●",

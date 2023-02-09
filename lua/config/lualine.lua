@@ -1,5 +1,7 @@
 local colors = {
+    blue = "#7cafc2",
     black = "#0c0c0d",
+    green = "#a1b56c",
     white = "#d8d8d8",
     purple = "#ba8baf",
     yellow = "#f7ca88",
@@ -14,7 +16,8 @@ local dumb = {
 
     insert = { a = { fg = colors.yellow, bg = colors.black } },
     visual = { a = { fg = colors.purple, bg = colors.black } },
-    replace = { a = { fg = colors.black, bg = colors.black } },
+    replace = { a = { fg = colors.blue, bg = colors.black } },
+    command = { a = { fg = colors.green, bg = colors.black } },
 
     inactive = {
         a = { fg = colors.white, bg = colors.black },
@@ -23,7 +26,7 @@ local dumb = {
     },
 }
 
-require("lualine").setup({
+return {
     options = {
         section_separators = { "", "" },
         component_separators = { "|", "|" },
@@ -49,4 +52,4 @@ require("lualine").setup({
         },
         lualine_c = { "branch", "filename" },
     },
-})
+}

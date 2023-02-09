@@ -33,27 +33,14 @@ local kind_icons = {
     TypeParameter = "",
 }
 
-local function border(hl_name)
-    return {
-        { "╔", hl_name },
-        { "═", hl_name },
-        { "╗", hl_name },
-        { "║", hl_name },
-        { "╝", hl_name },
-        { "═", hl_name },
-        { "╚", hl_name },
-        { "║", hl_name },
-    }
-end
-
 local cmp = require("cmp")
 cmp.setup({
     window = {
         completion = {
-            border = border("CmpBorder"),
+            border = "double",
         },
         documentation = {
-            border = border("CmpDocBorder"),
+            border = "double",
         },
     },
     formatting = {

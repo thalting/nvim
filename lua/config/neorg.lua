@@ -1,4 +1,4 @@
-require("neorg").setup({
+return {
     load = {
         ["core.defaults"] = {},
         ["core.export"] = { config = { extensions = "all" } },
@@ -11,4 +11,4 @@ require("neorg").setup({
         },
         ["core.norg.completion"] = { config = { engine = "nvim-cmp" } },
     },
-})
+}

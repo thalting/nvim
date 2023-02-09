@@ -5,7 +5,6 @@ local servers = {
     "rust_analyzer",
     "sumneko_lua",
     "clojure_lsp",
-    "elixirls",
     "ocamllsp",
     "pyright",
     "clangd",
@@ -17,20 +16,9 @@ local servers = {
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-local border = {
-    { "╔", "FloatBorder" },
-    { "═", "FloatBorder" },
-    { "╗", "FloatBorder" },
-    { "║", "FloatBorder" },
-    { "╝", "FloatBorder" },
-    { "═", "FloatBorder" },
-    { "╚", "FloatBorder" },
-    { "║", "FloatBorder" },
-}
-
 -- LSP settings (for overriding per client)
 local handlers = {
-    ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = border }),
+    ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "double" }),
 }
 
 for _, lsp in ipairs(servers) do
@@ -43,9 +31,6 @@ for _, lsp in ipairs(servers) do
                     },
                     diagnostics = {
                         globals = { "vim" },
-                    },
-                    telemetry = {
-                        enable = false,
                     },
                 },
             },

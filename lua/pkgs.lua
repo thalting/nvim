@@ -1,44 +1,47 @@
 return {
     -- lsp and completions
     {
-        "jose-elias-alvarez/null-ls.nvim",
-        config = function()
-            require("config.null-ls")
-        end,
-    },
-    {
-        "williamboman/mason.nvim",
-        dependencies = "williamboman/mason-lspconfig.nvim",
-        config = function()
-            require("mason").setup({
-                ui = {
-                    icons = {
-                        package_installed = "✓",
-                        package_pending = "➜",
-                        package_uninstalled = "✗",
-                    },
-                },
-            })
-        end,
-    },
-    {
         "neovim/nvim-lspconfig",
         config = function()
             require("config.lsp")
         end,
+        ft = {
+            -- see config.lsp.servers
+            "javascript",
+            "typescript",
+            "haskell",
+            "clojure",
+            "elixir",
+            "python",
+            "ocaml",
+            "rust",
+            "lua",
+            "cpp",
+            "zig",
+            "go",
+            "c",
+        },
+        dependencies = {
+            {
+                "jose-elias-alvarez/null-ls.nvim",
+                config = function()
+                    require("config.null-ls")
+                end,
+            },
+            { "j-hui/fidget.nvim", config = true },
+        },
     },
     {
         "folke/trouble.nvim",
-        cmd = "Trouble",
-        config = function()
-            require("trouble").setup({
-                fold_open = "",
-                fold_closed = "",
-            })
-        end,
+        cmd = { "Trouble", "TroubleToggle" },
+        opts = {
+            fold_open = "",
+            fold_closed = "",
+        },
     },
     {
         "hrsh7th/nvim-cmp",
+        event = { "InsertEnter", "CmdlineEnter" },
         dependencies = {
             -- snippets
             "dcampos/nvim-snippy",
@@ -54,6 +57,11 @@ return {
             require("config.cmp")
         end,
     },
+    {
+        "smjonas/inc-rename.nvim",
+        config = true,
+        cmd = "IncRename",
+    },
 
     -- visual
     {
@@ -67,49 +75,47 @@ return {
     },
     {
         "nvim-tree/nvim-web-devicons",
-        config = function()
-            require("nvim-web-devicons").setup({
-                override = {
-                    scm = {
-                        icon = "λ",
-                        color = "#e37933",
-                        cterm_color = "173",
-                        name = "Scheme",
-                    },
-                    default_icon = {
-                        icon = "",
-                        color = "#6d8086",
-                        cterm_color = "66",
-                        name = "Default",
-                    },
+        opts = {
+            override = {
+                scm = {
+                    icon = "λ",
+                    color = "#e37933",
+                    cterm_color = "173",
+                    name = "Scheme",
                 },
-            })
-        end,
+                fnl = {
+                    color = "#fff3d7",
+                    icon = "◐",
+                    cterm_color = "230",
+                    name = "Fennel",
+                },
+                default_icon = {
+                    icon = "",
+                    color = "#6d8086",
+                    cterm_color = "66",
+                    name = "Default",
+                },
+            },
+        },
     },
     {
         "NvChad/nvim-colorizer.lua",
-        config = function()
-            require("colorizer").setup({
-                user_default_options = {
-                    names = false,
-                },
-            })
-        end,
+        opts = {
+            user_default_options = {
+                names = false,
+            },
+        },
     },
     {
         "nvim-lualine/lualine.nvim",
-        config = function()
-            require("config.lualine")
-        end,
+        opts = require("config.lualine"),
     },
     {
         "akinsho/bufferline.nvim",
         version = "v3.*",
-        config = function()
-            require("config.bufferline")
-        end
+        opts = require("config.bufferline"),
     },
-    "stevearc/dressing.nvim",
+    { "stevearc/dressing.nvim", keys = { { "<space>ca", ":lua vim.lsp.buf.code_action()<cr>" } } },
     {
         "RRethy/nvim-base16",
         config = function()
@@ -120,43 +126,40 @@ return {
     -- git
     {
         "lewis6991/gitsigns.nvim",
-        config = function()
-            require("gitsigns").setup({
-                trouble = false,
-                current_line_blame_opts = {
-                    delay = 10,
-                },
-            })
-        end,
+        event = "BufReadPre",
+        opts = {
+            trouble = false, -- for lazy load trouble.nvim
+            current_line_blame_opts = {
+                delay = 10,
+            },
+            preview_config = {
+                border = "double",
+            },
+        },
     },
     { "TimUntersberger/neogit", cmd = "Neogit", config = true },
 
     -- life quality
     { "nvim-telescope/telescope.nvim", cmd = "Telescope" },
-    { "asiryk/auto-hlsearch.nvim", config = true },
     { "mcauley-penney/tidy.nvim", event = "BufWritePre", config = true },
     {
         "akinsho/toggleterm.nvim",
         cmd = "ToggleTerm",
-        config = function()
-            require("toggleterm").setup({
-                shade_terminals = false,
-            })
-        end,
+        opts = { shade_terminals = false },
     },
     {
         "kylechui/nvim-surround",
-        config = function()
-            require("nvim-surround").setup({
-                keymaps = {
-                    visual = "s",
-                },
-            })
-        end,
+        opts = {
+            keymaps = {
+                visual = "s",
+            },
+        },
     },
-    { "numToStr/Comment.nvim", config = true },
+    { "numToStr/Comment.nvim", event = "VeryLazy", config = true },
+    { "folke/which-key.nvim", lazy = true, config = true }, -- required in keybinds.lua
     {
         "windwp/nvim-autopairs",
+        event = "InsertEnter",
         config = function()
             local pairs = require("nvim-autopairs")
             pairs.setup({
@@ -171,9 +174,19 @@ return {
             }
         end,
     },
-    { "folke/which-key.nvim", config = true },
     {
         "Olical/conjure",
+        config = function()
+            -- conjure
+            vim.g["conjure#filetype#scheme"] = "conjure.client.guile.socket"
+            vim.g["conjure#client#guile#socket#pipename"] = ".guile-repl.socket"
+            vim.api.nvim_create_autocmd("BufNewFile", {
+                pattern = "conjure-log-*",
+                callback = function()
+                    vim.diagnostic.disable(0)
+                end,
+            })
+        end,
         ft = {
             "clojure",
             "scheme",
@@ -182,19 +195,17 @@ return {
         },
     },
 
-    -- other
-    "nvim-lua/plenary.nvim",
-
     -- documents
     {
         "nvim-neorg/neorg",
         ft = "norg",
-        config = function()
-            require("config.neorg")
-        end,
+        opts = require("config.neorg"),
         build = function()
             vim.cmd.Neorg("sync-parsers")
         end,
     },
     { "jbyuki/nabla.nvim", lazy = true },
+
+    -- deps
+    "nvim-lua/plenary.nvim",
 }

@@ -23,17 +23,17 @@ local mappings = {
     { "t", "<S-t>", "<C-\\><C-N> :ToggleTerm direction=float<cr>" }, -- fix toggle in zsh vi mode
 
     -- nabla
-    { "n", "<leader>p", function() require("nabla").popup() end },
+    { "n", "<leader>p", function() require("nabla").popup() end, },
 
     -- lsp
-    { "n", "gD", function() vim.lsp.buf.declaration() end, { desc = "Jumps to the declaration" }, },
-    { "n", "gd", function() vim.lsp.buf.definition() end, { desc = "Jumps to the definition" }, },
-    { "n", "gi", function() vim.lsp.buf.implementation() end, { desc = "Lists all the implementations" }, },
-    { "n", "<space>h", function() vim.lsp.buf.hover() end, { desc = "Displays hover information" }, },
-    { "n", "<space>D", function() vim.lsp.buf.type_definition() end, { desc = "Jumps to the definition of the type" }, },
-    { "n", "<space>rn", function() vim.lsp.buf.rename() end, { desc = "Renames all references" }, },
-    { "n", "gr", function() vim.lsp.buf.references() end, { desc = "Lists all the references" }, },
-    { "n", "<space>f", function() vim.lsp.buf.format() end, { desc = "Formats a buffer" }, },
+    { "n", "gD", vim.lsp.buf.declaration, { desc = "Jumps to the declaration" } },
+    { "n", "gd", vim.lsp.buf.definition, { desc = "Jumps to the definition" } },
+    { "n", "gi", vim.lsp.buf.implementation, { desc = "Lists all the implementations" } },
+    { "n", "<space>h", vim.lsp.buf.hover, { desc = "Displays hover information" } },
+    { "n", "<space>D", vim.lsp.buf.type_definition, { desc = "Jumps to the definition of the type" } },
+    { "n", "<space>rn", vim.lsp.buf.rename, { desc = "Renames all references" } },
+    { "n", "gr", vim.lsp.buf.references, { desc = "Lists all the references" } },
+    { "n", "<space>f", vim.lsp.buf.format, { desc = "Formats a buffer" } },
 
     -- inc rename
     { "n", "<leader>rn", ":IncRename ", { desc = "Incremental rename" } },

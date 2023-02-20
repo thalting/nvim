@@ -32,5 +32,7 @@ vim.cmd.aunmenu("PopUp.-1-")
 
 -- don't auto commenting new lines
 vim.api.nvim_create_autocmd("BufEnter", {
-    command = "set fo-=c fo-=r fo-=o",
+    callback = function()
+        vim.opt.formatoptions:remove({ "c", "o", "r" })
+    end,
 })

@@ -13,6 +13,7 @@ local mappings = {
     { "n", "<leader>tg", ":Telescope live_grep<cr>", { desc = "Live grep" } },
     { "n", "<leader>tb", ":Telescope buffers<cr>", { desc = "Buffers" } },
     { "n", "<leader>th", ":Telescope help_tags<cr>", { desc = "Help tags" } },
+    { "n", "<leader>tu", ":Telescope undo<cr>", { desc = "Undo tree" } },
 
     -- toggleterm
     { "t", "<C-z>", "<C-\\><C-N>" },
@@ -20,10 +21,7 @@ local mappings = {
     { "t", "<C-t>", "<C-\\><C-N> :ToggleTerm size=20 direction=horizontal<cr>" }, -- fix toggle in zsh vi mode
 
     { "n", "<S-t>", ":ToggleTerm direction=float<cr>" },
-    { "t", "<S-t>", "<C-\\><C-N> :ToggleTerm direction=float<cr>" }, -- fix toggle in zsh vi mode
-
-    -- nabla
-    { "n", "<leader>p", function() require("nabla").popup() end, },
+    -- { "t", "<S-t>", "<C-\\><C-N> :ToggleTerm direction=float<cr>" }, -- fix toggle in zsh vi mode
 
     -- lsp
     { "n", "gD", vim.lsp.buf.declaration, { desc = "Jumps to the declaration" } },
@@ -32,8 +30,13 @@ local mappings = {
     { "n", "<space>h", vim.lsp.buf.hover, { desc = "Displays hover information" } },
     { "n", "<space>D", vim.lsp.buf.type_definition, { desc = "Jumps to the definition of the type" } },
     { "n", "<space>rn", vim.lsp.buf.rename, { desc = "Renames all references" } },
+    { "n", "<space>ca", vim.lsp.buf.code_action, { desc = "Code actions" } },
     { "n", "gr", vim.lsp.buf.references, { desc = "Lists all the references" } },
     { "n", "<space>f", vim.lsp.buf.format, { desc = "Formats a buffer" } },
+    { "n", "<space>e", vim.diagnostic.open_float, { desc = "Show diagnostics in a floating window" } },
+    { "n", "[d", vim.diagnostic.goto_prev, { desc = "Move to the previous diagnostic" } },
+    { "n", "]d", vim.diagnostic.goto_next, { desc = "Move to the next diagnostic" } },
+    { "n", "<space>q", vim.diagnostic.setloclist, { desc = "Add buffer diagnostics to the location list" } },
 
     -- inc rename
     { "n", "<leader>rn", ":IncRename ", { desc = "Incremental rename" } },
@@ -46,6 +49,14 @@ local mappings = {
     { "n", "<leader>gsd", ":Gitsigns detach<cr>", { desc = "Detach" } },
     { "n", "<leader>gsb", ":Gitsigns blame_line<cr>", { desc = "Blame line" } },
     { "n", "<leader>gst", ":Gitsigns toggle_current_line_blame<cr>", { desc = "Toggle current line blame" } },
+
+    -- dial
+    { "n", "<C-a>", function() return require("dial.map").inc_normal() end, { expr = true } },
+    { "n", "<C-x>", function() return require("dial.map").dec_normal() end, { expr = true } },
+    { "v", "<C-a>", function() return require("dial.map").inc_visual() end, { expr = true } },
+    { "v", "<C-x>", function() return require("dial.map").dec_visual() end, { expr = true } },
+    { "v", "g<C-a>", function() return require("dial.map").inc_gvisual() end, { expr = true } },
+    { "v", "g<C-x>", function() return require("dial.map").dec_gvisual() end, { expr = true } },
 
     -- bufferline
     { "n", "<A-1>", ":BufferLineGoToBuffer 1<cr>" },

@@ -32,14 +32,6 @@ return {
         },
     },
     {
-        "folke/trouble.nvim",
-        cmd = { "Trouble", "TroubleToggle" },
-        opts = {
-            fold_open = "",
-            fold_closed = "",
-        },
-    },
-    {
         "hrsh7th/nvim-cmp",
         event = { "InsertEnter", "CmdlineEnter" },
         dependencies = {
@@ -115,7 +107,18 @@ return {
         version = "v3.*",
         opts = require("config.bufferline"),
     },
-    { "stevearc/dressing.nvim", keys = { { "<space>ca", ":lua vim.lsp.buf.code_action()<cr>" } } },
+    {
+        "stevearc/dressing.nvim",
+        config = function()
+            require("dressing").setup({
+                input = {
+                    border = "double",
+                    -- 'editor' and 'win' will default to being centered
+                    relative = "win",
+                },
+            })
+        end,
+    },
     {
         "RRethy/nvim-base16",
         config = function()
@@ -128,7 +131,6 @@ return {
         "lewis6991/gitsigns.nvim",
         event = "BufReadPre",
         opts = {
-            trouble = false, -- for lazy load trouble.nvim
             current_line_blame_opts = {
                 delay = 10,
             },
@@ -137,10 +139,43 @@ return {
             },
         },
     },
-    { "TimUntersberger/neogit", cmd = "Neogit", config = true },
+    {
+        "TimUntersberger/neogit",
+        cmd = "Neogit",
+        config = function()
+            vim.api.nvim_create_autocmd("FileType", {
+                pattern = "NeogitPopup",
+                callback = function()
+                    vim.opt_local.list = false
+                end,
+            })
+        end,
+    },
 
     -- life quality
-    { "nvim-telescope/telescope.nvim", cmd = "Telescope" },
+    {
+        "nvim-telescope/telescope.nvim",
+        cmd = "Telescope",
+        dependencies = {
+            "debugloop/telescope-undo.nvim",
+        },
+        config = function()
+            require("telescope").setup({
+                extensions = {
+                    undo = {
+                        mappings = {
+                            ["n"] = {
+                                ["ya"] = require("telescope-undo.actions").yank_additions,
+                                ["yd"] = require("telescope-undo.actions").yank_deletions,
+                                ["<CR>"] = require("telescope-undo.actions").restore,
+                            },
+                        },
+                    },
+                },
+            })
+            require("telescope").load_extension("undo")
+        end,
+    },
     { "mcauley-penney/tidy.nvim", event = "BufWritePre", config = true },
     {
         "akinsho/toggleterm.nvim",
@@ -148,30 +183,52 @@ return {
         opts = { shade_terminals = false },
     },
     {
-        "kylechui/nvim-surround",
-        opts = {
-            keymaps = {
-                visual = "s",
-            },
-        },
+        "monaqa/dial.nvim",
+        lazy = true,
+        config = function()
+            require("config.dial")
+        end,
     },
-    { "numToStr/Comment.nvim", event = "VeryLazy", config = true },
+    {
+        "kylechui/nvim-surround",
+        keys = {
+            -- normal
+            { "ys", mode = { "n" } },
+            { "ds", mode = { "n" } },
+            { "cs", mode = { "n" } },
+
+            --  visual
+            { "S", mode = { "v" } },
+        },
+        config = true,
+    },
+    {
+        "numToStr/Comment.nvim",
+        keys = {
+            { "gc", mode = { "n", "v" } },
+            { "gb", mode = { "n", "v" } },
+        },
+        config = true,
+    },
     { "folke/which-key.nvim", lazy = true, config = true }, -- required in keybinds.lua
     {
         "windwp/nvim-autopairs",
         event = "InsertEnter",
         config = function()
+            local rule = require("nvim-autopairs.rule")
             local pairs = require("nvim-autopairs")
             pairs.setup({
-                disale_in_macro = true,
+                disable_in_macro = true,
                 enable_check_bracket_line = false,
             })
-            pairs.get_rule("'")[1].not_filetypes = {
-                "clojure",
-                "scheme",
-                "fennel",
-                "lisp",
-            }
+            pairs.add_rules({
+                rule("'", "", {
+                    "clojure",
+                    "scheme",
+                    "fennel",
+                    "lisp",
+                }),
+            })
         end,
     },
     {
@@ -204,7 +261,6 @@ return {
             vim.cmd.Neorg("sync-parsers")
         end,
     },
-    { "jbyuki/nabla.nvim", lazy = true },
 
     -- deps
     "nvim-lua/plenary.nvim",

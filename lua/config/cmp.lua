@@ -50,6 +50,7 @@ cmp.setup({
             -- Source
             vim_item.menu = ({
                 buffer = "[Buffer]",
+                snippy = "[Snippy]",
                 nvim_lsp = "[LSP]",
             })[entry.source.name]
             return vim_item
@@ -116,7 +117,7 @@ cmp.setup.cmdline(":", {
     },
 })
 
-cmp.setup.cmdline("/", {
+cmp.setup.cmdline({ "/", "?" }, {
     mapping = cmp.mapping.preset.cmdline(),
     sources = {
         { name = "buffer" },

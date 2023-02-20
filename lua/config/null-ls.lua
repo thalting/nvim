@@ -1,19 +1,20 @@
-require("null-ls").setup({
+local nullls = require("null-ls")
+nullls.setup({
     sources = {
         -- formatters
-        require("null-ls").builtins.formatting.yapf,
-        require("null-ls").builtins.formatting.zprint,
-        require("null-ls").builtins.formatting.stylua,
+        nullls.builtins.formatting.yapf,
+        nullls.builtins.formatting.zprint,
+        nullls.builtins.formatting.stylua,
 
         -- code actions
-        require("null-ls").builtins.code_actions.gitsigns,
+        nullls.builtins.code_actions.gitsigns,
 
         -- diagnostics
-        require("null-ls").builtins.diagnostics.fish,
-        require("null-ls").builtins.diagnostics.clj_kondo,
-        require("null-ls").builtins.diagnostics.clang_check,
+        nullls.builtins.diagnostics.fish,
+        nullls.builtins.diagnostics.clj_kondo,
+        nullls.builtins.diagnostics.clang_check,
 
         -- hover
-        require("null-ls").builtins.hover.dictionary,
+        nullls.builtins.hover.dictionary,
     },
 })

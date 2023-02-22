@@ -21,7 +21,6 @@ local mappings = {
     { "t", "<C-t>", "<C-\\><C-N> :ToggleTerm size=20 direction=horizontal<cr>" }, -- fix toggle in zsh vi mode
 
     { "n", "<S-t>", ":ToggleTerm direction=float<cr>" },
-    -- { "t", "<S-t>", "<C-\\><C-N> :ToggleTerm direction=float<cr>" }, -- fix toggle in zsh vi mode
 
     -- lsp
     { "n", "gD", vim.lsp.buf.declaration, { desc = "Jumps to the declaration" } },
@@ -38,11 +37,16 @@ local mappings = {
     { "n", "]d", vim.diagnostic.goto_next, { desc = "Move to the next diagnostic" } },
     { "n", "<space>q", vim.diagnostic.setloclist, { desc = "Add buffer diagnostics to the location list" } },
 
-    -- inc rename
-    { "n", "<leader>rn", ":IncRename ", { desc = "Incremental rename" } },
-
     -- neogit
     { "n", "<space>g", ":Neogit<cr>", { desc = "Open Neogit" } },
+
+    -- lazy
+    { "n", "<leader>ll", ":Lazy<cr>", { desc = "Lazy home" } },
+    { "n", "<leader>ls", ":Lazy sync<cr>", { desc = "Lazy sync" } },
+    { "n", "<leader>lc", ":Lazy clear<cr>", { desc = "Lazy clear" } },
+    { "n", "<leader>lu", ":Lazy update<cr>", { desc = "Lazy update" } },
+    { "n", "<leader>lp", ":Lazy profile<cr>", { desc = "Lazy profile" } },
+    { "n", "<leader>li", ":Lazy install<cr>", { desc = "Lazy install" } },
 
     -- gitsigns
     { "n", "<leader>gsa", ":Gitsigns attach<cr>", { desc = "Attach" } },
@@ -51,12 +55,10 @@ local mappings = {
     { "n", "<leader>gst", ":Gitsigns toggle_current_line_blame<cr>", { desc = "Toggle current line blame" } },
 
     -- dial
-    { "n", "<C-a>", function() return require("dial.map").inc_normal() end, { expr = true } },
-    { "n", "<C-x>", function() return require("dial.map").dec_normal() end, { expr = true } },
-    { "v", "<C-a>", function() return require("dial.map").inc_visual() end, { expr = true } },
-    { "v", "<C-x>", function() return require("dial.map").dec_visual() end, { expr = true } },
-    { "v", "g<C-a>", function() return require("dial.map").inc_gvisual() end, { expr = true } },
-    { "v", "g<C-x>", function() return require("dial.map").dec_gvisual() end, { expr = true } },
+    { "n", "<C-a>", function() return require("dial.map").inc_normal() end, { expr = true }, },
+    { "n", "<C-x>", function() return require("dial.map").dec_normal() end, { expr = true }, },
+    { "v", "<C-a>", function() return require("dial.map").inc_visual() end, { expr = true }, },
+    { "v", "<C-x>", function() return require("dial.map").dec_visual() end, { expr = true }, },
 
     -- bufferline
     { "n", "<A-1>", ":BufferLineGoToBuffer 1<cr>" },
@@ -68,7 +70,12 @@ local mappings = {
     { "n", "<A-7>", ":BufferLineGoToBuffer 7<cr>" },
     { "n", "<A-8>", ":BufferLineGoToBuffer 8<cr>" },
     { "n", "<A-9>", ":BufferLineGoToBuffer 9<cr>" },
-    { "n", "<A-c>", ":BufferLinePickClose<cr>" },
+    { "n", "<A-x>", ":BufferLinePickClose<cr>" },
+    { "n", "<A-c>", ":bdelete<cr>" },
+    { "n", "<A-,>", ":BufferLineCyclePrev<cr>" },
+    { "n", "<A-.>", ":BufferLineCycleNext<cr>" },
+    { "n", "<A-<>", ":BufferLineMovePrev<cr>" },
+    { "n", "<A->>", ":BufferLineMoveNext<cr>" },
 
     -- buffers
     { "n", "<leader>bd", ":bdelete<cr>", { desc = "Delete buffer" } },
@@ -79,9 +86,10 @@ local mappings = {
 -- Which key registers
 local wk = require("which-key")
 wk.register({
-    g = { name = "Gitsigns" },
-    b = { name = "Buffers" },
-    t = { name = "Telescope" },
+    ["l"] = { name = "Lazy" },
+    ["b"] = { name = "Buffers" },
+    ["g"] = { name = "Gitsigns" },
+    ["t"] = { name = "Telescope" },
 }, { prefix = "<leader>" })
 
 local function map(mode, lhs, rhs, opts)

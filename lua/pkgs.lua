@@ -49,11 +49,6 @@ return {
             require("config.cmp")
         end,
     },
-    {
-        "smjonas/inc-rename.nvim",
-        config = true,
-        cmd = "IncRename",
-    },
 
     -- visual
     {
@@ -93,6 +88,10 @@ return {
     {
         "NvChad/nvim-colorizer.lua",
         opts = {
+            filetypes = {
+                "*",
+                "!lazy",
+            },
             user_default_options = {
                 names = false,
             },
@@ -132,7 +131,7 @@ return {
         event = "BufReadPre",
         opts = {
             current_line_blame_opts = {
-                delay = 10,
+                delay = 100,
             },
             preview_config = {
                 border = "double",
@@ -160,27 +159,19 @@ return {
             "debugloop/telescope-undo.nvim",
         },
         config = function()
-            require("telescope").setup({
-                extensions = {
-                    undo = {
-                        mappings = {
-                            ["n"] = {
-                                ["ya"] = require("telescope-undo.actions").yank_additions,
-                                ["yd"] = require("telescope-undo.actions").yank_deletions,
-                                ["<CR>"] = require("telescope-undo.actions").restore,
-                            },
-                        },
-                    },
-                },
-            })
-            require("telescope").load_extension("undo")
+            require("config.telescope")
         end,
     },
     { "mcauley-penney/tidy.nvim", event = "BufWritePre", config = true },
     {
         "akinsho/toggleterm.nvim",
         cmd = "ToggleTerm",
-        opts = { shade_terminals = false },
+        opts = {
+            shade_terminals = false,
+            float_opts = {
+                border = "double",
+            },
+        },
     },
     {
         "monaqa/dial.nvim",
@@ -215,20 +206,7 @@ return {
         "windwp/nvim-autopairs",
         event = "InsertEnter",
         config = function()
-            local rule = require("nvim-autopairs.rule")
-            local pairs = require("nvim-autopairs")
-            pairs.setup({
-                disable_in_macro = true,
-                enable_check_bracket_line = false,
-            })
-            pairs.add_rules({
-                rule("'", "", {
-                    "clojure",
-                    "scheme",
-                    "fennel",
-                    "lisp",
-                }),
-            })
+            require("config.autopairs")
         end,
     },
     {

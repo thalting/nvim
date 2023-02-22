@@ -18,12 +18,11 @@ local opts = {
     inccommand = "split",
     clipboard = "unnamedplus",
     termguicolors = true,
+    fillchars = { eob = " " },
 }
 
-vim.opt.fillchars = { eob = " " }
-
 for k, v in pairs(opts) do
-    vim.o[k] = v
+    vim.opt[k] = v
 end
 
 -- remove the "How-to disable mouse"

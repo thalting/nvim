@@ -7,6 +7,7 @@ require("nvim-treesitter.configs").setup({
         "zig",
         "lua",
         "nix",
+        "help",
         "rust",
         "llvm",
         "glsl",

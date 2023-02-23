@@ -23,3 +23,5 @@ vim.api.nvim_set_hl(0, "CmpItemAbbr", { fg = colors.base05, bg = colors.base00 }
 vim.api.nvim_set_hl(0, "Pmenu", { bg = colors.base00 })
 
 vim.api.nvim_set_hl(0, "LazyNormal", { bg = "#0a0a0b" })
+
+vim.api.nvim_set_hl(0, "Error", {})

@@ -6,6 +6,7 @@ local mappings = {
     { "n", "ZW", ":w<cr>" },
     { "n", "<leader>s", ":%s/" },
     { "n", "<leader><space>", ":nohlsearch<cr>" },
+    { "n", "<C-z>", "<nop>" }, -- disable suspend
 
     -- telescope
     { "n", "<leader>tt", ":Telescope<cr>", { desc = "Telescope" } },

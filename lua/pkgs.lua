@@ -28,7 +28,14 @@ return {
                     require("config.null-ls")
                 end,
             },
-            { "j-hui/fidget.nvim", config = true },
+            {
+                "j-hui/fidget.nvim",
+                opts = {
+                    text = {
+                        spinner = "dots", -- animation shown when tasks are ongoing
+                    },
+                },
+            },
         },
     },
     {
@@ -62,28 +69,7 @@ return {
     },
     {
         "nvim-tree/nvim-web-devicons",
-        opts = {
-            override = {
-                scm = {
-                    icon = "λ",
-                    color = "#e37933",
-                    cterm_color = "173",
-                    name = "Scheme",
-                },
-                fnl = {
-                    color = "#fff3d7",
-                    icon = "◐",
-                    cterm_color = "230",
-                    name = "Fennel",
-                },
-                default_icon = {
-                    icon = "",
-                    color = "#6d8086",
-                    cterm_color = "66",
-                    name = "Default",
-                },
-            },
-        },
+        opts = require("config.devicons"),
     },
     {
         "NvChad/nvim-colorizer.lua",
@@ -241,5 +227,5 @@ return {
     },
 
     -- deps
-    "nvim-lua/plenary.nvim",
+    { "nvim-lua/plenary.nvim", lazy = true }
 }

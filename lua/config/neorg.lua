@@ -3,12 +3,12 @@ return {
         ["core.defaults"] = {},
         ["core.export"] = { config = { extensions = "all" } },
         ["core.export.markdown"] = { config = { extensions = "all" } },
-        ["core.norg.dirman"] = {
+        ["core.dirman"] = {
             config = {
                 workspaces = { my_workspace = "~/documents/notes" },
                 autochdir = true,
             },
         },
-        ["core.norg.completion"] = { config = { engine = "nvim-cmp" } },
+        ["core.completion"] = { config = { engine = "nvim-cmp" } },
     },
 }

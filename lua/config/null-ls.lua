@@ -1,21 +1,23 @@
-local nullls = require("null-ls")
+local null_ls = require("null-ls")
 
-nullls.setup({
+null_ls.setup({
     sources = {
         -- formatters
-        nullls.builtins.formatting.yapf,
-        nullls.builtins.formatting.zprint,
-        nullls.builtins.formatting.stylua,
+        null_ls.builtins.formatting.yapf,
+        null_ls.builtins.formatting.zprint,
+        null_ls.builtins.formatting.stylua,
 
         -- code actions
-        nullls.builtins.code_actions.gitsigns,
+        null_ls.builtins.code_actions.gitsigns,
+        null_ls.builtins.code_actions.shellcheck,
 
         -- diagnostics
-        nullls.builtins.diagnostics.fish,
-        nullls.builtins.diagnostics.clj_kondo,
-        nullls.builtins.diagnostics.clang_check,
+        null_ls.builtins.diagnostics.fish,
+        null_ls.builtins.diagnostics.clj_kondo,
+        null_ls.builtins.diagnostics.shellcheck,
+        null_ls.builtins.diagnostics.clang_check,
 
         -- hover
-        nullls.builtins.hover.dictionary,
+        null_ls.builtins.hover.dictionary,
     },
 })

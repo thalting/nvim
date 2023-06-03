@@ -17,9 +17,9 @@ local mappings = {
     { "n", "<leader>tu", ":Telescope undo<cr>", { desc = "Undo tree" } },
 
     -- toggleterm
-    { "t", "<C-z>", "<C-\\><C-N>" },
+    { "t", "<ESC>", "<C-\\><C-N>" },
     { "n", "<C-t>", ":ToggleTerm size=20 direction=horizontal<cr>" },
-    { "t", "<C-t>", "<C-\\><C-N> :ToggleTerm size=20 direction=horizontal<cr>" }, -- fix toggle in zsh vi mode
+    { "t", "<C-t>", "<C-\\><C-N> :ToggleTerm<cr>" }, -- fix toggle in zsh vi mode
 
     { "n", "<S-t>", ":ToggleTerm direction=float<cr>" },
 
@@ -40,6 +40,9 @@ local mappings = {
 
     -- neogit
     { "n", "<space>g", ":Neogit<cr>", { desc = "Open Neogit" } },
+
+    -- trouble
+    { "n", "<space>t", ":TroubleToggle<cr>", { desc = "Open Trouble" } },
 
     -- lazy
     { "n", "<leader>ll", ":Lazy<cr>", { desc = "Lazy home" } },

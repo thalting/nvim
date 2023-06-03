@@ -7,8 +7,9 @@ return {
         end,
         ft = {
             -- see config.lsp.servers
-            "javascript",
+            "typescriptreact",
             "typescript",
+            "javascript",
             "haskell",
             "clojure",
             "elixir",
@@ -19,6 +20,7 @@ return {
             "cpp",
             "zig",
             "go",
+            "sh",
             "c",
         },
         dependencies = {
@@ -56,6 +58,29 @@ return {
             require("config.cmp")
         end,
     },
+    {
+        "folke/trouble.nvim",
+        cmd = { "TroubleToggle" },
+
+        config = function()
+            require("trouble").setup({
+                fold_open = "",
+                fold_closed = "",
+                indent_lines = false,
+                signs = {
+                    error = "",
+                    warning = "",
+                    hint = "",
+                    information = "",
+                    other = "﫠",
+                },
+            })
+            vim.api.nvim_set_hl(0, "TroubleText", {})
+            vim.api.nvim_set_hl(0, "TroubleIndent", {})
+            vim.api.nvim_set_hl(0, "TroubleLocation", {})
+            vim.api.nvim_set_hl(0, "TroubleFoldIcon", {})
+        end,
+    },
 
     -- visual
     {
@@ -69,6 +94,7 @@ return {
     },
     {
         "nvim-tree/nvim-web-devicons",
+        lazy = true,
         opts = require("config.devicons"),
     },
     {
@@ -116,6 +142,7 @@ return {
         "lewis6991/gitsigns.nvim",
         event = "BufReadPre",
         opts = {
+            trouble = false,
             current_line_blame_opts = {
                 delay = 100,
             },
@@ -154,6 +181,7 @@ return {
         cmd = "ToggleTerm",
         opts = {
             shade_terminals = false,
+            persist_mode = false,
             float_opts = {
                 border = "double",
             },
@@ -165,6 +193,15 @@ return {
         config = function()
             require("config.dial")
         end,
+    },
+    {
+        "kevinhwang91/nvim-ufo",
+        dependencies = "kevinhwang91/promise-async",
+        opts = {
+            provider_selector = function(_, _, _)
+                return { "treesitter", "indent" }
+            end,
+        },
     },
     {
         "kylechui/nvim-surround",
@@ -196,8 +233,23 @@ return {
         end,
     },
     {
+        "windwp/nvim-ts-autotag",
+        config = true,
+        filetype = {
+            "typescriptreact",
+            "typescript",
+            "javascript",
+            "markdown",
+            "html",
+            "jsx",
+            "tsx",
+            "vue",
+            "xml",
+        },
+    },
+    {
         "Olical/conjure",
-        config = function()
+        init = function()
             -- conjure
             vim.g["conjure#filetype#scheme"] = "conjure.client.guile.socket"
             vim.g["conjure#client#guile#socket#pipename"] = ".guile-repl.socket"

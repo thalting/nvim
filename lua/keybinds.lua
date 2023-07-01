@@ -15,6 +15,7 @@ local mappings = {
     { "n", "<leader>tb", ":Telescope buffers<cr>", { desc = "Buffers" } },
     { "n", "<leader>th", ":Telescope help_tags<cr>", { desc = "Help tags" } },
     { "n", "<leader>tu", ":Telescope undo<cr>", { desc = "Undo tree" } },
+    { "n", "<leader>tc", ":Telescope neoclip<cr>", { desc = "Open neoclip" } },
 
     -- toggleterm
     { "t", "<ESC>", "<C-\\><C-N>" },

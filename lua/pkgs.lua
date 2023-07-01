@@ -32,6 +32,7 @@ return {
             },
             {
                 "j-hui/fidget.nvim",
+                tag = "legacy",
                 opts = {
                     text = {
                         spinner = "dots", -- animation shown when tasks are ongoing
@@ -170,6 +171,14 @@ return {
         cmd = "Telescope",
         dependencies = {
             "debugloop/telescope-undo.nvim",
+            {
+                "AckslD/nvim-neoclip.lua",
+                config = function()
+                    require("neoclip").setup({
+                        default_register = "+",
+                    })
+                end,
+            },
         },
         config = function()
             require("config.telescope")
@@ -213,6 +222,16 @@ return {
 
             --  visual
             { "S", mode = { "v" } },
+        },
+        config = true,
+    },
+    {
+        "echasnovski/mini.move",
+        keys = {
+            { "<M-h>", mode = { "n", "v" } },
+            { "<M-j>", mode = { "n", "v" } },
+            { "<M-k>", mode = { "n", "v" } },
+            { "<M-l>", mode = { "n", "v" } },
         },
         config = true,
     },

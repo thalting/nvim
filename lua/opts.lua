@@ -30,8 +30,6 @@ for k, v in pairs(opts) do
     vim.opt[k] = v
 end
 
-vim.loader.enable()
-
 -- remove the "How-to disable mouse"
 vim.cmd.aunmenu("PopUp.How-to\\ disable\\ mouse")
 vim.cmd.aunmenu("PopUp.-1-")

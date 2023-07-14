@@ -8,6 +8,29 @@ local mappings = {
     { "n", "<leader><space>", ":nohlsearch<cr>" },
     { "n", "<C-z>", "<nop>" }, -- disable suspend
 
+    -- move lines
+    { "n", "<A-j>", "<cmd>m .+1<cr>==", { desc = "Move down" } },
+    { "n", "<A-k>", "<cmd>m .-2<cr>==", { desc = "Move up" } },
+    { "i", "<A-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move down" } },
+    { "i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move up" } },
+    { "v", "<A-j>", ":m '>+1<cr>gv=gv", { desc = "Move down" } },
+    { "v", "<A-k>", ":m '<-2<cr>gv=gv", { desc = "Move up" } },
+
+    -- move to window using the <ctrl> hjkl keys
+    { "n", "<C-h>", "<C-w>h", { desc = "Go to left window", remap = true } },
+    { "n", "<C-j>", "<C-w>j", { desc = "Go to lower window", remap = true } },
+    { "n", "<C-k>", "<C-w>k", { desc = "Go to upper window", remap = true } },
+    { "n", "<C-l>", "<C-w>l", { desc = "Go to right window", remap = true } },
+
+    -- resize window using <ctrl> arrow keys
+    { "n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase window height" } },
+    { "n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease window height" } },
+    { "n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width" } },
+    { "n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" } },
+
+    { "v", "<", "<gv" },
+    { "v", ">", ">gv" },
+
     -- telescope
     { "n", "<leader>tt", ":Telescope<cr>", { desc = "Telescope" } },
     { "n", "<leader>tf", ":Telescope find_files<cr>", { desc = "Find files" } },
@@ -18,7 +41,7 @@ local mappings = {
     { "n", "<leader>tc", ":Telescope neoclip<cr>", { desc = "Open neoclip" } },
 
     -- toggleterm
-    { "t", "<ESC>", "<C-\\><C-N>" },
+    { "t", "<esc><esc>", "<C-\\><C-N>", { desc = "Enter Normal Mode" } },
     { "n", "<C-t>", ":ToggleTerm size=20 direction=horizontal<cr>" },
     { "t", "<C-t>", "<C-\\><C-N> :ToggleTerm<cr>" }, -- fix toggle in zsh vi mode
 
@@ -30,7 +53,7 @@ local mappings = {
     { "n", "gi", vim.lsp.buf.implementation, { desc = "Lists all the implementations" } },
     { "n", "<space>h", vim.lsp.buf.hover, { desc = "Displays hover information" } },
     { "n", "<space>D", vim.lsp.buf.type_definition, { desc = "Jumps to the definition of the type" } },
-    { "n", "<space>rn", vim.lsp.buf.rename, { desc = "Renames all references" } },
+    { "n", "<space>rn", ":IncRename ", { desc = "Renames all references" } },
     { "n", "<space>ca", vim.lsp.buf.code_action, { desc = "Code actions" } },
     { "n", "gr", vim.lsp.buf.references, { desc = "Lists all the references" } },
     { "n", "<space>f", vim.lsp.buf.format, { desc = "Formats a buffer" } },

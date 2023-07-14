@@ -24,7 +24,5 @@ vim.api.nvim_set_hl(0, "Pmenu", { bg = colors.base00 })
 
 vim.api.nvim_set_hl(0, "LazyNormal", { bg = "#0a0a0b" })
 
-vim.api.nvim_set_hl(0, "Error", {})
-
 vim.api.nvim_set_hl(0, "TroubleText", {})
 vim.api.nvim_set_hl(0, "TroubleFoldIcon", {})

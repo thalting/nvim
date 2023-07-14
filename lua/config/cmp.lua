@@ -102,11 +102,13 @@ cmp.setup({
         end, { "i", "s" }),
     }),
     sources = {
+        { name = "async_path" },
         { name = "nvim_lsp" },
         { name = "snippy" },
         { name = "buffer" },
         { name = "neorg" },
-        { name = "path" },
+        { name = "fish" },
+        { name = "tmux" },
     },
 })
 

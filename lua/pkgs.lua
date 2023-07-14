@@ -49,11 +49,13 @@ return {
             "dcampos/nvim-snippy",
 
             -- sources
+            "FelipeLema/cmp-async-path",
+            "andersevenrud/cmp-tmux",
             "hrsh7th/cmp-nvim-lsp",
             "hrsh7th/cmp-cmdline",
             "dcampos/cmp-snippy",
             "hrsh7th/cmp-buffer",
-            "hrsh7th/cmp-path",
+            "mtoohey31/cmp-fish",
         },
         config = function()
             require("config.cmp")
@@ -155,7 +157,8 @@ return {
     {
         "TimUntersberger/neogit",
         cmd = "Neogit",
-        config = function()
+        config = true,
+        init = function()
             vim.api.nvim_create_autocmd("FileType", {
                 pattern = "NeogitPopup",
                 callback = function()
@@ -185,6 +188,14 @@ return {
         end,
     },
     { "mcauley-penney/tidy.nvim", event = "BufWritePre", config = true },
+    {
+        "smjonas/inc-rename.nvim",
+        config = function()
+            require("inc_rename").setup({
+                input_buffer_type = "dressing",
+            })
+        end,
+    },
     {
         "akinsho/toggleterm.nvim",
         cmd = "ToggleTerm",
@@ -222,16 +233,6 @@ return {
 
             --  visual
             { "S", mode = { "v" } },
-        },
-        config = true,
-    },
-    {
-        "echasnovski/mini.move",
-        keys = {
-            { "<M-h>", mode = { "n", "v" } },
-            { "<M-j>", mode = { "n", "v" } },
-            { "<M-k>", mode = { "n", "v" } },
-            { "<M-l>", mode = { "n", "v" } },
         },
         config = true,
     },

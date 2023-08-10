@@ -42,6 +42,21 @@ return {
         },
     },
     {
+        "williamboman/mason.nvim",
+        config = function()
+            require("mason").setup({
+                ui = {
+                    icons = {
+                        package_installed = "✓",
+                        package_pending = "➜",
+                        package_uninstalled = "✗",
+                    },
+                },
+            })
+        end,
+        cmd = { "Mason" },
+    },
+    {
         "hrsh7th/nvim-cmp",
         event = { "InsertEnter", "CmdlineEnter" },
         dependencies = {
@@ -157,7 +172,23 @@ return {
     {
         "TimUntersberger/neogit",
         cmd = "Neogit",
-        config = true,
+        config = function()
+            require("neogit").setup({
+                mappings = {
+                    status = {
+                        ["1"] = false,
+                        ["2"] = false,
+                        ["3"] = false,
+                        ["4"] = false,
+
+                        ["<space>1"] = "Depth1",
+                        ["<space>2"] = "Depth2",
+                        ["<space>3"] = "Depth3",
+                        ["<space>4"] = "Depth4",
+                    },
+                },
+            })
+        end,
         init = function()
             vim.api.nvim_create_autocmd("FileType", {
                 pattern = "NeogitPopup",

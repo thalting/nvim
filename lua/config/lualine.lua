@@ -52,4 +52,5 @@ return {
         },
         lualine_c = { "branch", "filename" },
     },
+    extensions = { "toggleterm", "lazy" },
 }

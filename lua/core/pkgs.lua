@@ -5,56 +5,18 @@ return {
         config = function()
             require("config.lsp")
         end,
-        ft = {
-            -- see config.lsp.servers
-            "typescriptreact",
-            "typescript",
-            "javascript",
-            "haskell",
-            "clojure",
-            "elixir",
-            "python",
-            "ocaml",
-            "rust",
-            "lua",
-            "cpp",
-            "zig",
-            "go",
-            "sh",
-            "c",
-        },
         dependencies = {
             {
-                "jose-elias-alvarez/null-ls.nvim",
+                "nvimtools/none-ls.nvim",
                 config = function()
                     require("config.null-ls")
                 end,
             },
             {
                 "j-hui/fidget.nvim",
-                tag = "legacy",
-                opts = {
-                    text = {
-                        spinner = "dots", -- animation shown when tasks are ongoing
-                    },
-                },
+                config = true,
             },
         },
-    },
-    {
-        "williamboman/mason.nvim",
-        config = function()
-            require("mason").setup({
-                ui = {
-                    icons = {
-                        package_installed = "✓",
-                        package_pending = "➜",
-                        package_uninstalled = "✗",
-                    },
-                },
-            })
-        end,
-        cmd = { "Mason" },
     },
     {
         "hrsh7th/nvim-cmp",
@@ -174,6 +136,7 @@ return {
         cmd = "Neogit",
         config = function()
             require("neogit").setup({
+                kind = "auto",
                 mappings = {
                     status = {
                         ["1"] = false,
@@ -186,6 +149,9 @@ return {
                         ["<space>3"] = "Depth3",
                         ["<space>4"] = "Depth4",
                     },
+                },
+                integrations = {
+                    telescope = true,
                 },
             })
         end,
@@ -219,14 +185,6 @@ return {
         end,
     },
     { "mcauley-penney/tidy.nvim", event = "BufWritePre", config = true },
-    {
-        "smjonas/inc-rename.nvim",
-        config = function()
-            require("inc_rename").setup({
-                input_buffer_type = "dressing",
-            })
-        end,
-    },
     {
         "akinsho/toggleterm.nvim",
         cmd = "ToggleTerm",
@@ -286,17 +244,6 @@ return {
     {
         "windwp/nvim-ts-autotag",
         config = true,
-        filetype = {
-            "typescriptreact",
-            "typescript",
-            "javascript",
-            "markdown",
-            "html",
-            "jsx",
-            "tsx",
-            "vue",
-            "xml",
-        },
     },
     {
         "Olical/conjure",

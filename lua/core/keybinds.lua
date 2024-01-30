@@ -4,7 +4,9 @@ vim.g.maplocalleader = ","
 local mappings = {
     -- my maps
     { "n", "ZW", ":w<cr>" },
+    { "n", "<C-s>", ":w<cr>" },
     { "n", "<leader>s", ":%s/" },
+    { "v", "<leader>s", ":s/" },
     { "n", "<leader><space>", ":nohlsearch<cr>" },
     { "n", "<C-z>", "<nop>" }, -- disable suspend
 
@@ -28,9 +30,6 @@ local mappings = {
     { "n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width" } },
     { "n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" } },
 
-    { "v", "<", "<gv" },
-    { "v", ">", ">gv" },
-
     -- telescope
     { "n", "<leader>tt", ":Telescope<cr>", { desc = "Telescope" } },
     { "n", "<leader>tf", ":Telescope find_files<cr>", { desc = "Find files" } },
@@ -53,7 +52,7 @@ local mappings = {
     { "n", "gi", vim.lsp.buf.implementation, { desc = "Lists all the implementations" } },
     { "n", "<space>h", vim.lsp.buf.hover, { desc = "Displays hover information" } },
     { "n", "<space>D", vim.lsp.buf.type_definition, { desc = "Jumps to the definition of the type" } },
-    { "n", "<space>rn", ":IncRename ", { desc = "Renames all references" } },
+    { "n", "<space>rn", vim.lsp.buf.rename, { desc = "Renames all references" } },
     { "n", "<space>ca", vim.lsp.buf.code_action, { desc = "Code actions" } },
     { "n", "gr", vim.lsp.buf.references, { desc = "Lists all the references" } },
     { "n", "<space>f", vim.lsp.buf.format, { desc = "Formats a buffer" } },

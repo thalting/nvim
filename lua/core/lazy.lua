@@ -11,10 +11,10 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-local pkgs = require("pkgs")
+local pkgs = require("core.pkgs")
 require("lazy").setup(pkgs, {
     install = {
-        missing = false,
+        missing = true,
     },
     ui = {
         icons = {
@@ -31,6 +31,8 @@ require("lazy").setup(pkgs, {
             source = "",
             start = "",
             task = "✔",
+            require = " ",
+            import = " ",
             lazy = " ",
             list = {
                 "●",

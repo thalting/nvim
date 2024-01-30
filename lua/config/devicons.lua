@@ -1,5 +1,11 @@
 return {
     override = {
+        zig = {
+            icon = "",
+            color = "#f69a1b",
+            cterm_color = "172",
+            name = "Zig",
+        },
         scm = {
             icon = "λ",
             color = "#e37933",

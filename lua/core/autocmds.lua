@@ -14,9 +14,9 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 
 -- resize splits if window got resized
 vim.api.nvim_create_autocmd("VimResized", {
-  callback = function()
-    vim.cmd.tabdo("wincmd =")
-  end,
+    callback = function()
+        vim.cmd.tabdo("wincmd =")
+    end,
 })
 
 -- show cursor line only in active window

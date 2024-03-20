@@ -27,6 +27,7 @@ return {
 
             -- sources
             "FelipeLema/cmp-async-path",
+            "SergioRibera/cmp-dotenv",
             "andersevenrud/cmp-tmux",
             "hrsh7th/cmp-nvim-lsp",
             "hrsh7th/cmp-cmdline",
@@ -52,7 +53,7 @@ return {
                     warning = "",
                     hint = "",
                     information = "",
-                    other = "﫠",
+                    other = "X",
                 },
             })
             vim.api.nvim_set_hl(0, "TroubleText", {})

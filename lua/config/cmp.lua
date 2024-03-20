@@ -57,6 +57,11 @@ cmp.setup({
         end,
     },
     enabled = function()
+        -- disable in telescope
+        if vim.bo.buftype == "prompt" then
+            return false
+        end
+
         -- disable completion in comments
         local context = require("cmp.config.context")
         -- keep command mode completion enabled when cursor is in a comment
@@ -105,6 +110,7 @@ cmp.setup({
         { name = "nvim_lsp" },
         { name = "snippy" },
         { name = "buffer" },
+        { name = "dotenv" },
         { name = "neorg" },
         { name = "fish" },
         { name = "tmux" },

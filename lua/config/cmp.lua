@@ -110,7 +110,6 @@ cmp.setup({
         { name = "nvim_lsp" },
         { name = "snippy" },
         { name = "buffer" },
-        { name = "dotenv" },
         { name = "neorg" },
         { name = "fish" },
         { name = "tmux" },

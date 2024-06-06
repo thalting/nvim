@@ -27,7 +27,6 @@ return {
 
             -- sources
             "FelipeLema/cmp-async-path",
-            "SergioRibera/cmp-dotenv",
             "andersevenrud/cmp-tmux",
             "hrsh7th/cmp-nvim-lsp",
             "hrsh7th/cmp-cmdline",
@@ -75,6 +74,7 @@ return {
     },
     {
         "nvim-tree/nvim-web-devicons",
+        tag = "nerd-v2-compat",
         lazy = true,
         opts = require("config.devicons"),
     },
@@ -226,14 +226,6 @@ return {
         },
         config = true,
     },
-    {
-        "numToStr/Comment.nvim",
-        keys = {
-            { "gc", mode = { "n", "v" } },
-            { "gb", mode = { "n", "v" } },
-        },
-        config = true,
-    },
     { "folke/which-key.nvim", lazy = true, config = true }, -- required in keybinds.lua
     {
         "windwp/nvim-autopairs",
@@ -251,7 +243,9 @@ return {
         init = function()
             -- conjure
             vim.g["conjure#filetype#scheme"] = "conjure.client.guile.socket"
+
             vim.g["conjure#client#guile#socket#pipename"] = ".guile-repl.socket"
+
             vim.api.nvim_create_autocmd("BufNewFile", {
                 pattern = "conjure-log-*",
                 callback = function()
@@ -265,16 +259,6 @@ return {
             "fennel",
             "lisp",
         },
-    },
-
-    -- documents
-    {
-        "nvim-neorg/neorg",
-        ft = "norg",
-        opts = require("config.neorg"),
-        build = function()
-            vim.cmd.Neorg("sync-parsers")
-        end,
     },
 
     -- deps
